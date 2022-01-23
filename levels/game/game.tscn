@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://characters/rogue/rogue.tscn" type="PackedScene" id=1]
+[ext_resource path="res://players/rogue/rogue.tscn" type="PackedScene" id=1]
 [ext_resource path="res://eggs/egg_001/egg_001.tscn" type="PackedScene" id=2]
+[ext_resource path="res://enemies/skeleton/skeleton.tscn" type="PackedScene" id=3]
 
 [node name="Game" type="Node"]
 
@@ -10,5 +11,10 @@
 [node name="Rogue" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 345, 199 )
 
-[node name="Egg" parent="YSort" instance=ExtResource( 2 )]
+[node name="Eggs" type="Node2D" parent="YSort"]
+
+[node name="Egg" parent="YSort/Eggs" instance=ExtResource( 2 )]
 position = Vector2( 304, 369 )
+
+[node name="Skeleton" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 104, 72 )

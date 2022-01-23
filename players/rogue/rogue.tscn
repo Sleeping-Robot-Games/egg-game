@@ -1,7 +1,7 @@
 [gd_scene load_steps=33 format=2]
 
-[ext_resource path="res://characters/rogue/spritesheet.png" type="Texture" id=1]
-[ext_resource path="res://characters/rogue/rogue.gd" type="Script" id=2]
+[ext_resource path="res://players/rogue/rogue.gd" type="Script" id=1]
+[ext_resource path="res://players/rogue/spritesheet.png" type="Texture" id=2]
 [ext_resource path="res://projectiles/dagger/dagger.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -462,11 +462,11 @@ tracks/0/keys = {
 [node name="Rogue" type="KinematicBody2D"]
 collision_layer = 8
 collision_mask = 355
-script = ExtResource( 2 )
+script = ExtResource( 1 )
 Projectile = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 hframes = 8
 vframes = 13
 

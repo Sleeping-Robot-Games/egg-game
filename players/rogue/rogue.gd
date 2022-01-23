@@ -7,8 +7,6 @@ export (PackedScene) var Projectile
 onready var anim_player: AnimationPlayer = $AnimationPlayer
 onready var game_scene: Node = null
 #onready var player_start_node: Position2D = get_node("/root/Game/PlayerStart")
-onready var slices_icon: TextureRect = get_node("/root/Game/UI/PizzaSlices")
-onready var invert_screen: ColorRect = get_node('/root/Game/UI/InvertScreen')
 
 var inversion_count: int = 0
 var slices_count: int = 4
