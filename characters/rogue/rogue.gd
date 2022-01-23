@@ -32,10 +32,12 @@ var movement_enabled = true
 var current_coin = null
 var current_enemy = null
 
+
 func _ready():
 	speed = run_speed
 	#last_checkpoint_pos = player_start_node.global_position
 	#slices_icon.texture = load('Assets/Slices' + str(slices_count) + '.png')
+
 
 func get_input():
 	velocity = Vector2()
@@ -80,6 +82,7 @@ func get_input():
 	
 	sprite_animation()
 
+
 func sprite_animation():
 	# If X and Y both changed, Y currently takes precedence
 	if x_changed:
@@ -107,9 +110,11 @@ func sprite_animation():
 		animation = new_animation
 		anim_player.play(animation + facing)
 
+
 func _physics_process(delta):
 	get_input()
 	velocity = move_and_slide(velocity)
+
 
 func attacked():
 	if not current_enemy:
@@ -139,12 +144,14 @@ func attacked():
 		$InvulnerabilityTimer.start()
 		#slices_icon.texture = load('Assets/Slices' + str(slices_count) + '.png')
 
+
 func play_sfx(name):
 	var sfx_player = AudioStreamPlayer2D.new()
 	sfx_player.stream = load("res://Assets/Audio/"+name+".mp3")
 	sfx_player.connect("finished", sfx_player, "queue_free")
 	add_child(sfx_player)
 	sfx_player.play()
+
 
 func pick_up_coin():
 	if current_coin:
@@ -153,7 +160,7 @@ func pick_up_coin():
 			game_scene.add_coin()
 			current_coin.queue_free()
 			current_coin = null
-	
+
 
 func _on_PickupArea_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
 	if area and area.name == 'ItemArea':
@@ -173,25 +180,31 @@ func _on_PickupArea_area_shape_entered(area_rid, area, area_shape_index, local_s
 			area.get_parent().float_text('Checkpoint Reached!')
 		last_checkpoint_pos = area.get_parent().get_node('Checkpoint').global_position
 
+
 func _on_PickupArea_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
 	if area and area.name == 'SafeZoneArea':
 		safe = false
 
+
 func _on_InverseCooldown_timeout():
 	inverse_ready = true
+
 
 func _on_PickupArea_body_entered(body):
 	current_enemy = body
 	attacked()
 
+
 func _on_PickupArea_body_exited(body):
 	current_enemy = null
+
 
 func _on_InvulnerabilityTimer_timeout():
 	if not movement_enabled:
 		global_position = last_checkpoint_pos
 		movement_enabled = true
 	is_invulnerable = false
+
 
 func _on_FlashTimer_timeout():
 	if is_invulnerable:
@@ -203,6 +216,7 @@ func _on_FlashTimer_timeout():
 		$FlashTimer.start()
 	else:
 		modulate = Color(1,1,1,1) # normal
+
 
 func _on_ProjectileTimer_timeout():
 	var projectile_instance = Projectile.instance()
