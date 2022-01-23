@@ -117,6 +117,7 @@ func _physics_process(delta):
 
 
 func attacked():
+	print("attacked")
 	if not current_enemy:
 		return
 	var enemy_name = current_enemy.name.rstrip("0123456789")
@@ -191,8 +192,9 @@ func _on_InverseCooldown_timeout():
 
 
 func _on_PickupArea_body_entered(body):
-	current_enemy = body
-	attacked()
+	#current_enemy = body
+	#attacked()
+	pass
 
 
 func _on_PickupArea_body_exited(body):
@@ -208,6 +210,7 @@ func _on_InvulnerabilityTimer_timeout():
 
 func _on_FlashTimer_timeout():
 	if is_invulnerable:
+		print("is_invulnerable")
 		if is_flashing:
 			modulate = Color(1,1,1,1) # normal
 		else:
@@ -215,6 +218,7 @@ func _on_FlashTimer_timeout():
 		is_flashing = !is_flashing
 		$FlashTimer.start()
 	else:
+		print("normal")
 		modulate = Color(1,1,1,1) # normal
 
 
