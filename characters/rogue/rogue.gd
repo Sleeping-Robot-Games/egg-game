@@ -2,9 +2,9 @@ extends KinematicBody2D
 
 export (int) var run_speed: int = 150
 export (int) var sneak_speed: int = 75
+export (PackedScene) var Projectile
 
 onready var anim_player: AnimationPlayer = $AnimationPlayer
-
 onready var game_scene: Node = null
 #onready var player_start_node: Position2D = get_node("/root/Game/PlayerStart")
 onready var slices_icon: TextureRect = get_node("/root/Game/UI/PizzaSlices")
@@ -32,12 +32,10 @@ var movement_enabled = true
 var current_coin = null
 var current_enemy = null
 
-
 func _ready():
 	speed = run_speed
 	#last_checkpoint_pos = player_start_node.global_position
 	#slices_icon.texture = load('Assets/Slices' + str(slices_count) + '.png')
-
 
 func get_input():
 	velocity = Vector2()
@@ -58,7 +56,6 @@ func get_input():
 		speed = sneak_speed if sneaking else run_speed
 		# g.emit_signal('sneak', sneaking)
 
-	
 	# store necessary information to determine which way to face player in sprite_animation()
 	# x axis
 	x_changed = false
@@ -82,7 +79,6 @@ func get_input():
 		y_changed = true
 	
 	sprite_animation()
-
 
 func sprite_animation():
 	# If X and Y both changed, Y currently takes precedence
@@ -110,7 +106,6 @@ func sprite_animation():
 		facing = new_facing
 		animation = new_animation
 		anim_player.play(animation + facing)
-
 
 func _physics_process(delta):
 	get_input()
@@ -150,7 +145,7 @@ func play_sfx(name):
 	sfx_player.connect("finished", sfx_player, "queue_free")
 	add_child(sfx_player)
 	sfx_player.play()
-	
+
 func pick_up_coin():
 	if current_coin:
 		if current_coin.type == "Coin":
@@ -198,7 +193,6 @@ func _on_InvulnerabilityTimer_timeout():
 		movement_enabled = true
 	is_invulnerable = false
 
-
 func _on_FlashTimer_timeout():
 	if is_invulnerable:
 		if is_flashing:
@@ -210,3 +204,7 @@ func _on_FlashTimer_timeout():
 	else:
 		modulate = Color(1,1,1,1) # normal
 
+func _on_ProjectileTimer_timeout():
+	var projectile_instance = Projectile.instance()
+	add_child(projectile_instance)
+	projectile_instance.look_at(get_global_mouse_position())
