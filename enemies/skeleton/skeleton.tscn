@@ -179,3 +179,5 @@ anims/WalkBack = SubResource( 7 )
 anims/WalkFront = SubResource( 8 )
 anims/WalkLeft = SubResource( 9 )
 anims/WalkRight = SubResource( 10 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
