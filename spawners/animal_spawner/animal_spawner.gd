@@ -1,9 +1,9 @@
 extends Node2D
 
 onready var game = get_parent().get_parent()
-var skeleton = preload("res://enemies/skeleton/skeleton.tscn")
+var skeleton = preload("res://animals/skeleton/skeleton.tscn")
 
-func spawn_enemy(enemy_scene):
+func spawn_animal(animal_scene):
 	# determine spawn position and destination position
 	var viewport = get_viewport()
 	var half_viewport_width = viewport.size.x / 2
@@ -14,7 +14,6 @@ func spawn_enemy(enemy_scene):
 	# spawn_loc indicates if spawning to the left, top, or right of viewport
 	rng.randomize()
 	var spawn_loc = rng.randi_range(0, 2)
-	print(spawn_loc)
 	if spawn_loc == 0:
 		# spawn will be left of viewport and top half of screen
 		rng.randomize()
@@ -49,26 +48,26 @@ func spawn_enemy(enemy_scene):
 		var destination_y = rng.randi_range(half_viewport_height, viewport.size.y)
 		destination_pos = Vector2(destination_x, destination_y)
 	
-	# spawn and initialize enemy
-	var enemy_instance = enemy_scene.instance()
-	enemy_instance.global_position = spawn_pos
-	enemy_instance.destination = destination_pos
-	add_child(enemy_instance)
+	# spawn and initialize animal
+	var animal_instance = animal_scene.instance()
+	animal_instance.global_position = spawn_pos
+	animal_instance.destination = destination_pos
+	add_child(animal_instance)
 	
 
 func _on_SpawnTimer_timeout():
 	# todo: factor in player count and make spawn logic more dynamic
 	if game.difficulty == 0:
-		spawn_enemy(skeleton)
+		spawn_animal(skeleton)
 	elif game.difficulty == 1:
-		spawn_enemy(skeleton)
-		spawn_enemy(skeleton)
+		spawn_animal(skeleton)
+		spawn_animal(skeleton)
 	elif game.difficulty == 2:
-		spawn_enemy(skeleton)
-		spawn_enemy(skeleton)
-		spawn_enemy(skeleton)
+		spawn_animal(skeleton)
+		spawn_animal(skeleton)
+		spawn_animal(skeleton)
 	elif game.difficulty >= 3:
-		spawn_enemy(skeleton)
-		spawn_enemy(skeleton)
-		spawn_enemy(skeleton)
-		spawn_enemy(skeleton)
+		spawn_animal(skeleton)
+		spawn_animal(skeleton)
+		spawn_animal(skeleton)
+		spawn_animal(skeleton)

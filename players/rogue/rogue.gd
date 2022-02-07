@@ -8,6 +8,7 @@ onready var anim_player: AnimationPlayer = $AnimationPlayer
 onready var game_scene: Node = null
 #onready var player_start_node: Position2D = get_node("/root/Game/PlayerStart")
 
+var type = "player"
 var inversion_count: int = 0
 var slices_count: int = 4
 var slices_lost: int = 0
@@ -115,7 +116,6 @@ func _physics_process(delta):
 
 
 func attacked():
-	print("attacked")
 	if not current_enemy:
 		return
 	var enemy_name = current_enemy.name.rstrip("0123456789")
@@ -208,7 +208,6 @@ func _on_InvulnerabilityTimer_timeout():
 
 func _on_FlashTimer_timeout():
 	if is_invulnerable:
-		print("is_invulnerable")
 		if is_flashing:
 			modulate = Color(1,1,1,1) # normal
 		else:
@@ -216,7 +215,6 @@ func _on_FlashTimer_timeout():
 		is_flashing = !is_flashing
 		$FlashTimer.start()
 	else:
-		print("normal")
 		modulate = Color(1,1,1,1) # normal
 
 

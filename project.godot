@@ -83,9 +83,13 @@ down={
 [layer_names]
 
 2d_physics/layer_1="player"
-2d_physics/layer_2="enemy"
+2d_physics/layer_2="animal"
 2d_physics/layer_3="player_projectile"
-2d_physics/layer_4="egg"
+2d_physics/layer_4="floating_seed"
+2d_physics/layer_5="grounded_seed"
+2d_physics/layer_6="sapling"
+2d_physics/layer_7="defensive_plant"
+2d_physics/layer_8="passive_ability_plant"
 
 [physics]
 
