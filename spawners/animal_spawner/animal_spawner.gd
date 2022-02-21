@@ -3,11 +3,10 @@ extends Node2D
 onready var game = get_parent().get_parent()
 var skeleton = preload("res://animals/skeleton/skeleton.tscn")
 
+
 func spawn_animal(animal_scene):
 	# determine spawn position and destination position
 	var viewport = get_viewport()
-	var half_viewport_width = viewport.size.x / 2
-	var half_viewport_height = viewport.size.y / 2
 	var spawn_pos = Vector2.ZERO
 	var destination_pos = Vector2.ZERO
 	var rng = RandomNumberGenerator.new()
@@ -15,20 +14,20 @@ func spawn_animal(animal_scene):
 	rng.randomize()
 	var spawn_loc = rng.randi_range(0, 2)
 	if spawn_loc == 0:
-		# spawn will be left of viewport and top half of screen
+		# spawn will be left of map and top half of screen
 		rng.randomize()
-		var spawn_x = (half_viewport_width * -1) -32
-		var spawn_y = rng.randi_range(0, half_viewport_height)
+		var spawn_x = -32
+		var spawn_y = rng.randi_range(0, viewport.size.y / 2)
 		spawn_pos = Vector2(spawn_x, spawn_y)
 		# destination will be right of viewport and bottom half of screen
 		rng.randomize()
-		var destination_x = half_viewport_width + 32
-		var destination_y = rng.randi_range(half_viewport_height, viewport.size.y)
+		var destination_x = viewport.size.x + 32
+		var destination_y = rng.randi_range(viewport.size.y / 2, viewport.size.y)
 		destination_pos = Vector2(destination_x, destination_y)
 	elif spawn_loc == 1:
 		# spawn will be above viewport
 		rng.randomize()
-		var spawn_x = rng.randi_range(half_viewport_width * -1, half_viewport_width)
+		var spawn_x = rng.randi_range(0, viewport.size.x)
 		var spawn_y = -32
 		spawn_pos = Vector2(spawn_x, spawn_y)
 		# destination will be below viewport
@@ -39,13 +38,13 @@ func spawn_animal(animal_scene):
 	elif spawn_loc == 2:
 		# spawn will be right of viewport and top half of screen
 		rng.randomize()
-		var spawn_x = half_viewport_width + 32
-		var spawn_y = rng.randi_range(0, half_viewport_height)
+		var spawn_x = viewport.size.x + 32
+		var spawn_y = rng.randi_range(0, viewport.size.y / 2)
 		spawn_pos = Vector2(spawn_x, spawn_y)
 		# destination will be left of viewport and bottom half of screen
 		rng.randomize()
-		var destination_x = (half_viewport_width * -1) -32
-		var destination_y = rng.randi_range(half_viewport_height, viewport.size.y)
+		var destination_x = -32
+		var destination_y = rng.randi_range(viewport.size.y / 2, viewport.size.y)
 		destination_pos = Vector2(destination_x, destination_y)
 	
 	# spawn and initialize animal
