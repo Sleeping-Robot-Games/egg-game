@@ -1,9 +1,8 @@
 extends Node
 
 var difficulty = 0
-onready var spawn_pos = $SpawnPos
-onready var dest_pos = $DestPos
 onready var camera = $Camera2D
+onready var map = $Map
 onready var difficulty_bar = $Camera2D/DifficultyBar
 
 func _ready():
@@ -13,11 +12,11 @@ func _ready():
 
 func set_camera_limits():
 	var viewport = get_viewport().size
-	var map = $Map.rect_size
+	var map_size = map.rect_size
 	camera.limit_left = 0 - (viewport.x / 2)
-	camera.limit_right = map.x + (viewport.x / 2)
+	camera.limit_right = map_size.x + (viewport.x / 2)
 	camera.limit_top = 0 - (viewport.y / 2)
-	camera.limit_bottom = map.y + (viewport.y / 2)
+	camera.limit_bottom = map_size.y + (viewport.y / 2)
 
 
 func _on_DifficultyTimer_timeout():
