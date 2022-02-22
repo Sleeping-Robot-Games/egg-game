@@ -31,11 +31,10 @@ func _physics_process(delta):
 	var target_pos = destination
 	if node_target:
 		target_pos = node_target.global_position
-	global_position = global_position.move_toward(target_pos, delta * move_speed)
-	#velocity = global_position.direction_to(target_pos) * move_speed
-	#var collision = move_and_slide(velocity)
-	#if collision:
-		#pass
+	velocity = global_position.direction_to(target_pos) * move_speed
+	var collision = move_and_slide(velocity)
+	if collision:
+		pass
 	
 	# animate sprite based on movement direction
 	animate_sprite(global_position, target_pos)
