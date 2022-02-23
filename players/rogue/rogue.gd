@@ -112,7 +112,9 @@ func sprite_animation():
 
 func _physics_process(delta):
 	get_input()
-	velocity = move_and_slide(velocity)
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		pass
 
 
 func attacked():

@@ -19,6 +19,8 @@ var node_target = null
 
 func _physics_process(delta):
 	# only despawn if off screen after animal has first appeared on screen
+	# todo: change this so it is not based on camera visibility (will be different per player),
+	#       and instead use a short timer or check if enemy is within map boundaries
 	if not despawn_if_offscreen and get_node("VisibilityNotifier2D").is_on_screen():
 		despawn_if_offscreen = true
 	elif despawn_if_offscreen and not get_node("VisibilityNotifier2D").is_on_screen():
@@ -32,7 +34,7 @@ func _physics_process(delta):
 	if node_target:
 		target_pos = node_target.global_position
 	velocity = global_position.direction_to(target_pos) * move_speed
-	var collision = move_and_slide(velocity)
+	var collision = move_and_collide(velocity * delta)
 	if collision:
 		pass
 	
