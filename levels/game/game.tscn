@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://players/rogue/rogue.tscn" type="PackedScene" id=1]
+[ext_resource path="res://spawners/seed_spawner/seed_spawner.tscn" type="PackedScene" id=2]
 [ext_resource path="res://levels/game/ground_tile.png" type="Texture" id=3]
 [ext_resource path="res://spawners/animal_spawner/animal_spawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://levels/game/game.gd" type="Script" id=5]
@@ -56,6 +57,8 @@ remote_path = NodePath("../../../../Camera2D")
 
 [node name="EnemySpawner" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 320, 10 )
+
+[node name="SeedSpawner" parent="YSort" instance=ExtResource( 2 )]
 
 [node name="DifficultyTimer" type="Timer" parent="."]
 autostart = true
