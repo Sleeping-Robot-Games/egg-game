@@ -29,14 +29,21 @@ func _physics_process(delta):
 	$Shadow.offset.y = (1 - progress_normalized) * shadow_offset
 	$Shadow.modulate.a = progress_normalized
 	
-	# if within 1 pixel of destination, turn into grounded seed or sapling
+	# if within 1 pixel of destination, play dust cloud animation
 	if remaining_distance <= 1:
+		$AnimationPlayer.play("dust_cloud")
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	# after dust cloud finishes, turn into a grounded seed or sapling
+	if anim_name == "dust_cloud":
 		var rng = RandomNumberGenerator.new()
 		rng.randomize()
 		var spawn_type = rng.randi_range(0, 2)
 		# grounded seed
 		if spawn_type <= 1:
-			print("todo: spawn grounded_seed")
+			print("todo: spawn grounded seed")
 		else:
 			print("todo: spawn sapling")
 		queue_free()
+		
