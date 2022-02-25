@@ -60,6 +60,8 @@ position = Vector2( 320, 10 )
 
 [node name="SeedSpawner" parent="YSort" instance=ExtResource( 2 )]
 
+[node name="Plants" type="Node2D" parent="YSort"]
+
 [node name="DifficultyTimer" type="Timer" parent="."]
 autostart = true
 

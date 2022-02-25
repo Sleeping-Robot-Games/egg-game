@@ -5,6 +5,8 @@ var shadow_offset = 80
 var velocity = Vector2.ZERO
 var spawn = Vector2.ZERO
 var destination = Vector2.ZERO
+onready var plants = get_node("/root/Game/YSort/Plants")
+var test_plant = preload("res://plants/test_plant/test_plant.tscn")
 
 
 func _ready():
@@ -37,13 +39,19 @@ func _physics_process(delta):
 func _on_AnimationPlayer_animation_finished(anim_name):
 	# after dust cloud finishes, turn into a grounded seed or sapling
 	if anim_name == "dust_cloud":
+		print("dust_cloud")
+		var seed_instance = test_plant.instance()
+		seed_instance.global_position = global_position
+		plants.add_child(seed_instance)
 		var rng = RandomNumberGenerator.new()
 		rng.randomize()
 		var spawn_type = rng.randi_range(0, 2)
 		# grounded seed
 		if spawn_type <= 1:
-			print("todo: spawn grounded seed")
+			print("spawn_seed()")
+			seed_instance.spawn_seed()
 		else:
-			print("todo: spawn sapling")
+			print("spawn_sapling()")
+			seed_instance.spawn_sapling()
 		queue_free()
 		

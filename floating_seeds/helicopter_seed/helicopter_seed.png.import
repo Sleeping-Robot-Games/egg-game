@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dust.png-2c6e491a2ec96688a1a6e307419ce6a6.stex"
+path="res://.import/helicopter_seed.png-085a6acf7a5bd28f213c5f0c5fe641ec.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://seeds/helicopter_seed/dust.png"
-dest_files=[ "res://.import/dust.png-2c6e491a2ec96688a1a6e307419ce6a6.stex" ]
+source_file="res://floating_seeds/helicopter_seed/helicopter_seed.png"
+dest_files=[ "res://.import/helicopter_seed.png-085a6acf7a5bd28f213c5f0c5fe641ec.stex" ]
 
 [params]
 

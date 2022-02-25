@@ -1,7 +1,7 @@
 extends Node2D
 
 onready var game = get_parent().get_parent()
-var helicopter_seed = preload("res://seeds/helicopter_seed/helicopter_seed.tscn")
+var helicopter_seed = preload("res://floating_seeds/helicopter_seed/helicopter_seed.tscn")
 
 func spawn_seed(seed_scene):
 	# determine spawn position and destination position
